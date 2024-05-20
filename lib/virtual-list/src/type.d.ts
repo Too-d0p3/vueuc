@@ -1,5 +1,5 @@
 import { VNodeChild } from 'vue';
-export declare type ItemData = Record<string, any>;
+export declare type ItemData = any;
 export interface VScrollToOptions extends ScrollToOptions {
     index?: number;
     key?: number | string;

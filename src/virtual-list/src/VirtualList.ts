@@ -215,15 +215,20 @@ export default defineComponent({
     const viewportItemsRef = computed(() => {
       const { value: listHeight } = listHeightRef
       if (listHeight === undefined) return []
-      const { items, itemSize } = props
+      const { items, itemSize, itemAsKey } = props
       const startIndex = startIndexRef.value
       const endIndex = Math.min(
         startIndex + Math.ceil(listHeight / itemSize + 1),
         items.length - 1
       )
-      const viewportItems: ItemData[] = []
+      const viewportItems = [];
       for (let i = startIndex; i <= endIndex; ++i) {
-        viewportItems.push(items[i])
+        if(itemAsKey){
+          viewportItems.push(i)
+        }else{
+          viewportItems.push(items[i])
+        }
+
       }
       return viewportItems
     })
