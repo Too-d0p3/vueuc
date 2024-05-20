@@ -114,6 +114,10 @@ export default defineComponent({
       type: String,
       default: 'key'
     },
+    itemAsKey: {
+      type: Boolean,
+      default: false
+    },
     // Whether it is a good API?
     // ResizeObserver + footer & header is not enough.
     // Too complex for simple case
@@ -168,9 +172,14 @@ export default defineComponent({
     })
     const keyIndexMapRef = computed(() => {
       const map = new Map()
-      const { keyField } = props
+      const { keyField, itemAsKey } = props
       props.items.forEach((item, index) => {
-        map.set(item[keyField], index)
+        if(itemAsKey){
+          map.set(index, index)
+        }else{
+          map.set(item[keyField], index)
+        }
+
       })
       return map
     })
@@ -182,10 +191,10 @@ export default defineComponent({
     const listHeightRef = ref<undefined | number>(undefined)
     const keyToHeightOffset = new Map<string | number, number>()
     const finweckTreeRef = computed(() => {
-      const { items, itemSize, keyField } = props
+      const { items, itemSize, keyField, itemAsKey } = props
       const ft = new FinweckTree(items.length, itemSize)
       items.forEach((item, index) => {
-        const key: string | number = item[keyField]
+        const key: string | number = itemAsKey ? item : item[keyField]
         const heightOffset = keyToHeightOffset.get(key)
         if (heightOffset !== undefined) {
           ft.add(index, heightOffset)
@@ -460,7 +469,7 @@ export default defineComponent({
     }
   },
   render () {
-    const { itemResizable, keyField, keyToIndex, visibleItemsTag } = this
+    const { itemResizable, keyField, keyToIndex, visibleItemsTag, itemAsKey } = this
     return h(
       VResizeObserver,
       {
@@ -499,7 +508,7 @@ export default defineComponent({
                         default: () => {
                           const { renderCell } = this
                           return this.viewportItems.map((item) => {
-                            const key = item[keyField]
+                            const key = itemAsKey ? item : item[keyField]
                             const index = keyToIndex.get(key)
                             const cells = (renderCell != null)
                               ? h(VirtualListRow, {

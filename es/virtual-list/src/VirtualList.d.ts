@@ -61,6 +61,10 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
+    itemAsKey: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     paddingTop: {
         type: (StringConstructor | NumberConstructor)[];
         default: number;
@@ -129,6 +133,10 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
+    itemAsKey: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     paddingTop: {
         type: (StringConstructor | NumberConstructor)[];
         default: number;
@@ -145,6 +153,7 @@ declare const _default: import("vue").DefineComponent<{
     visibleItemsTag: string | object;
     ignoreItemResize: boolean;
     keyField: string;
+    itemAsKey: boolean;
     paddingTop: string | number;
     paddingBottom: string | number;
 }, {}>;
