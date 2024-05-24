@@ -148,7 +148,6 @@ export default defineComponent({
         const keyToHeightOffset = new Map();
         const itemsLengthRef = computed(() => props.items.length);
         const finweckTreeRef = computed(() => {
-            const dStart = Date.now();
             const { items, itemSize, keyField, itemAsKey } = props;
             // Podmínka pro kontrolu itemAsKey
             if (itemAsKey) {
@@ -161,7 +160,7 @@ export default defineComponent({
                         ft.add(index, heightOffset);
                     }
                 }
-                console.log('finweckTreeRef (itemAsKey true)', Date.now() - dStart);
+                console.log(ft);
                 return ft;
             }
             else {
@@ -173,7 +172,7 @@ export default defineComponent({
                         ft.add(index, heightOffset);
                     }
                 });
-                console.log('finweckTreeRef (itemAsKey false)', Date.now() - dStart);
+                console.log(ft);
                 return ft;
             }
         });
