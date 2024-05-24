@@ -160,7 +160,6 @@ export default defineComponent({
                         ft.add(index, heightOffset);
                     }
                 }
-                console.log(ft);
                 return ft;
             }
             else {
@@ -172,7 +171,6 @@ export default defineComponent({
                         ft.add(index, heightOffset);
                     }
                 });
-                console.log(ft);
                 return ft;
             }
         });
