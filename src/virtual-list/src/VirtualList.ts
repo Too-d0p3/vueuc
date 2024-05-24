@@ -196,19 +196,36 @@ export default defineComponent({
     const listElRef = ref<null | HTMLElement>(null)
     const listHeightRef = ref<undefined | number>(undefined)
     const keyToHeightOffset = new Map<string | number, number>()
+    const itemsLengthRef = computed(() => props.items.length)
     const finweckTreeRef = computed(() => {
       const dStart = Date.now()
       const { items, itemSize, keyField, itemAsKey } = props
-      const ft = new FinweckTree(items.length, itemSize)
-      items.forEach((item, index) => {
-        const key: string | number = itemAsKey ? item : item[keyField]
-        const heightOffset = keyToHeightOffset.get(key)
-        if (heightOffset !== undefined) {
-          ft.add(index, heightOffset)
+
+      // Podmínka pro kontrolu itemAsKey
+      if (itemAsKey) {
+        // Použijeme itemsLengthRef pro přepočet, pokud itemAsKey je true
+        const length = itemsLengthRef.value
+        const ft = new FinweckTree(length, itemSize)
+        for (let index = 0; index < length; index++) {
+          const heightOffset = keyToHeightOffset.get(index)
+          if (heightOffset !== undefined) {
+            ft.add(index, heightOffset)
+          }
         }
-      })
-      console.log('finweckTreeRef', Date.now() - dStart)
-      return ft
+        console.log('finweckTreeRef (itemAsKey true)', Date.now() - dStart)
+        return ft
+      } else {
+        const ft = new FinweckTree(items.length, itemSize)
+        items.forEach((item, index) => {
+          const key = item[keyField]
+          const heightOffset = keyToHeightOffset.get(key)
+          if (heightOffset !== undefined) {
+            ft.add(index, heightOffset)
+          }
+        })
+        console.log('finweckTreeRef (itemAsKey false)', Date.now() - dStart)
+        return ft
+      }
     })
     const finweckTreeUpdateTrigger = ref(0)
     const scrollTopRef = ref(0)
@@ -221,7 +238,6 @@ export default defineComponent({
       )
     })
     const viewportItemsRef = computed(() => {
-      const dStart = Date.now()
       const { value: listHeight } = listHeightRef
       if (listHeight === undefined) return []
       const { items, itemSize, itemAsKey } = props
@@ -238,7 +254,6 @@ export default defineComponent({
           viewportItems.push(items[i])
         }
       }
-      console.log('viewportItemsRef', Date.now() - dStart)
       return viewportItems
     })
     const scrollTo: ScrollTo = (
@@ -520,9 +535,8 @@ export default defineComponent({
                       ),
                       {
                         default: () => {
-                          const dStart = Date.now()
                           const { renderCell } = this
-                          const a = this.viewportItems.map((item) => {
+                          return this.viewportItems.map((item) => {
                             const key = itemAsKey ? item : item[keyField]
                             const index = itemAsKey ? item : keyToIndex.get(key)
                             const cells = (renderCell != null)
@@ -551,8 +565,6 @@ export default defineComponent({
                             itemVNode.key = key
                             return itemVNode
                           })
-                          console.log('row renderer', Date.now() - dStart)
-                          return a;
                         }
                       }
                     )
