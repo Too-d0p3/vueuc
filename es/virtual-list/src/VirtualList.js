@@ -147,6 +147,7 @@ export default defineComponent({
         const listHeightRef = ref(undefined);
         const keyToHeightOffset = new Map();
         const finweckTreeRef = computed(() => {
+            const dStart = Date.now();
             const { items, itemSize, keyField, itemAsKey } = props;
             const ft = new FinweckTree(items.length, itemSize);
             items.forEach((item, index) => {
@@ -156,6 +157,7 @@ export default defineComponent({
                     ft.add(index, heightOffset);
                 }
             });
+            console.log('finweckTreeRef', Date.now() - dStart);
             return ft;
         });
         const finweckTreeUpdateTrigger = ref(0);
@@ -164,6 +166,7 @@ export default defineComponent({
             return Math.max(finweckTreeRef.value.getBound(scrollTopRef.value - depx(props.paddingTop)) - 1, 0);
         });
         const viewportItemsRef = computed(() => {
+            const dStart = Date.now();
             const { value: listHeight } = listHeightRef;
             if (listHeight === undefined)
                 return [];
@@ -179,6 +182,7 @@ export default defineComponent({
                     viewportItems.push(items[i]);
                 }
             }
+            console.log('viewportItemsRef', Date.now() - dStart);
             return viewportItems;
         });
         const scrollTo = (options, y) => {
@@ -442,8 +446,9 @@ export default defineComponent({
                                 style: this.visibleItemsStyle
                             }, this.visibleItemsProps), {
                                 default: () => {
+                                    const dStart = Date.now();
                                     const { renderCell } = this;
-                                    return this.viewportItems.map((item) => {
+                                    const a = this.viewportItems.map((item) => {
                                         const key = itemAsKey ? item : item[keyField];
                                         const index = itemAsKey ? item : keyToIndex.get(key);
                                         const cells = (renderCell != null)
@@ -467,6 +472,8 @@ export default defineComponent({
                                         itemVNode.key = key;
                                         return itemVNode;
                                     });
+                                    console.log('row renderer', Date.now() - dStart);
+                                    return a;
                                 }
                             })
                         ])

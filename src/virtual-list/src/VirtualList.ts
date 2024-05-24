@@ -175,8 +175,8 @@ export default defineComponent({
       const map = new Map()
       const { keyField, itemAsKey } = props
 
-      if(itemAsKey){
-        return map;
+      if (itemAsKey) {
+        return map
       }
 
       props.items.forEach((item, index) => {
@@ -197,6 +197,7 @@ export default defineComponent({
     const listHeightRef = ref<undefined | number>(undefined)
     const keyToHeightOffset = new Map<string | number, number>()
     const finweckTreeRef = computed(() => {
+      const dStart = Date.now()
       const { items, itemSize, keyField, itemAsKey } = props
       const ft = new FinweckTree(items.length, itemSize)
       items.forEach((item, index) => {
@@ -206,6 +207,7 @@ export default defineComponent({
           ft.add(index, heightOffset)
         }
       })
+      console.log('finweckTreeRef', Date.now() - dStart)
       return ft
     })
     const finweckTreeUpdateTrigger = ref(0)
@@ -219,6 +221,7 @@ export default defineComponent({
       )
     })
     const viewportItemsRef = computed(() => {
+      const dStart = Date.now()
       const { value: listHeight } = listHeightRef
       if (listHeight === undefined) return []
       const { items, itemSize, itemAsKey } = props
@@ -235,6 +238,7 @@ export default defineComponent({
           viewportItems.push(items[i])
         }
       }
+      console.log('viewportItemsRef', Date.now() - dStart)
       return viewportItems
     })
     const scrollTo: ScrollTo = (
@@ -516,8 +520,9 @@ export default defineComponent({
                       ),
                       {
                         default: () => {
+                          const dStart = Date.now()
                           const { renderCell } = this
-                          return this.viewportItems.map((item) => {
+                          const a = this.viewportItems.map((item) => {
                             const key = itemAsKey ? item : item[keyField]
                             const index = itemAsKey ? item : keyToIndex.get(key)
                             const cells = (renderCell != null)
@@ -546,6 +551,8 @@ export default defineComponent({
                             itemVNode.key = key
                             return itemVNode
                           })
+                          console.log('row renderer', Date.now() - dStart)
+                          return a;
                         }
                       }
                     )
