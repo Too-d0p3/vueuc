@@ -4,7 +4,7 @@ export const VirtualListRow = defineComponent({
     name: 'VirtualListRow',
     props: {
         item: {
-            type: Object,
+            type: [Object, Number],
             required: true
         }
     },
