@@ -126,6 +126,9 @@ export default defineComponent({
         const keyIndexMapRef = computed(() => {
             const map = new Map();
             const { keyField, itemAsKey } = props;
+            if (itemAsKey) {
+                return map;
+            }
             props.items.forEach((item, index) => {
                 if (itemAsKey) {
                     map.set(index, index);
@@ -442,7 +445,7 @@ export default defineComponent({
                                     const { renderCell } = this;
                                     return this.viewportItems.map((item) => {
                                         const key = itemAsKey ? item : item[keyField];
-                                        const index = keyToIndex.get(key);
+                                        const index = itemAsKey ? item : keyToIndex.get(key);
                                         const cells = (renderCell != null)
                                             ? h(VirtualListRow, {
                                                 item

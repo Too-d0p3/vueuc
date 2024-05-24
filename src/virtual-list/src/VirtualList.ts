@@ -170,19 +170,25 @@ export default defineComponent({
       props.columns.forEach(column => { width += column.width })
       return width
     })
+
     const keyIndexMapRef = computed(() => {
       const map = new Map()
       const { keyField, itemAsKey } = props
+
+      if(itemAsKey){
+        return map;
+      }
+
       props.items.forEach((item, index) => {
-        if(itemAsKey){
+        if (itemAsKey) {
           map.set(index, index)
-        }else{
+        } else {
           map.set(item[keyField], index)
         }
-
       })
       return map
     })
+
     const { scrollLeftRef, setListWidth } = setupXScroll({
       columnsRef: toRef(props, 'columns'),
       renderCellRef: toRef(props, 'renderCell')
@@ -221,14 +227,13 @@ export default defineComponent({
         startIndex + Math.ceil(listHeight / itemSize + 1),
         items.length - 1
       )
-      const viewportItems = [];
+      const viewportItems = []
       for (let i = startIndex; i <= endIndex; ++i) {
-        if(itemAsKey){
+        if (itemAsKey) {
           viewportItems.push(i)
-        }else{
+        } else {
           viewportItems.push(items[i])
         }
-
       }
       return viewportItems
     })
@@ -514,7 +519,7 @@ export default defineComponent({
                           const { renderCell } = this
                           return this.viewportItems.map((item) => {
                             const key = itemAsKey ? item : item[keyField]
-                            const index = keyToIndex.get(key)
+                            const index = itemAsKey ? item : keyToIndex.get(key)
                             const cells = (renderCell != null)
                               ? h(VirtualListRow, {
                                 item

@@ -1,5 +1,5 @@
 import { PropType, CSSProperties } from 'vue';
-import { ItemData, VScrollToOptions, VVirtualListColumn, VVirtualListRenderCell } from './type';
+import { VScrollToOptions, VVirtualListColumn, VVirtualListRenderCell } from './type';
 export interface CommonScrollToOptions {
     behavior?: ScrollBehavior;
     debounce?: boolean;
@@ -37,7 +37,7 @@ declare const _default: import("vue").DefineComponent<{
     };
     renderCell: PropType<VVirtualListRenderCell>;
     items: {
-        type: PropType<ItemData[]>;
+        type: PropType<any[]>;
         default: () => never[];
     };
     itemSize: {
@@ -90,7 +90,7 @@ declare const _default: import("vue").DefineComponent<{
     visibleItemsStyle: import("vue").ComputedRef<{
         transform: string;
     }>;
-    viewportItems: import("vue").ComputedRef<ItemData[]>;
+    viewportItems: import("vue").ComputedRef<any[]>;
     listElRef: import("vue").Ref<HTMLElement | null>;
     itemsElRef: import("vue").Ref<Element | null>;
     scrollTo: ScrollTo;
@@ -109,7 +109,7 @@ declare const _default: import("vue").DefineComponent<{
     };
     renderCell: PropType<VVirtualListRenderCell>;
     items: {
-        type: PropType<ItemData[]>;
+        type: PropType<any[]>;
         default: () => never[];
     };
     itemSize: {
@@ -148,7 +148,7 @@ declare const _default: import("vue").DefineComponent<{
 }>>, {
     columns: VVirtualListColumn[];
     showScrollbar: boolean;
-    items: ItemData[];
+    items: any[];
     itemResizable: boolean;
     visibleItemsTag: string | object;
     ignoreItemResize: boolean;
