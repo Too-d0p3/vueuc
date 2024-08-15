@@ -10,8 +10,8 @@ export interface BinderInstance extends ExposedBinderInstance {
     addResizeListener: (listener: () => void) => void;
     removeResizeListener: (listener: () => void) => void;
 }
-export declare type Placement = 'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'left-start' | 'left-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end';
-export declare type NonCenterPlacement = 'top-start' | 'top-end' | 'left-start' | 'left-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end';
+export type Placement = 'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'left-start' | 'left-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end';
+export type NonCenterPlacement = 'top-start' | 'top-end' | 'left-start' | 'left-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end';
 export interface Rect {
     left: number;
     right: number;
@@ -20,7 +20,7 @@ export interface Rect {
     width: number;
     height: number;
 }
-export declare type Align = 'start' | 'end' | 'center';
-export declare type Position = 'left' | 'right' | 'top' | 'bottom';
-export declare type TransformOrigin = 'top left' | 'top center' | 'top right' | 'bottom left' | 'bottom center' | 'bottom right' | 'top left' | 'center left' | 'bottom left' | 'top right' | 'center right' | 'bottom right';
-export declare type FlipLevel = 1 | 2;
+export type Align = 'start' | 'end' | 'center';
+export type Position = 'left' | 'right' | 'top' | 'bottom';
+export type TransformOrigin = 'top left' | 'top center' | 'top right' | 'bottom left' | 'bottom center' | 'bottom right' | 'top left' | 'center left' | 'bottom left' | 'top right' | 'center right' | 'bottom right';
+export type FlipLevel = 1 | 2;

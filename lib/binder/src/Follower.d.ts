@@ -14,7 +14,7 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
     syncTrigger: {
-        type: PropType<("resize" | "scroll")[]>;
+        type: PropType<Array<"scroll" | "resize">>;
         default: string[];
     };
     to: PropType<string | HTMLElement>;
@@ -25,8 +25,8 @@ declare const _default: import("vue").DefineComponent<{
     internalShift: BooleanConstructor;
     x: NumberConstructor;
     y: NumberConstructor;
-    width: PropType<string>;
-    minWidth: PropType<string>;
+    width: PropType<"target" | string>;
+    minWidth: PropType<"target" | string>;
     containerClass: StringConstructor;
     teleportDisabled: BooleanConstructor;
     zindexable: {
@@ -53,7 +53,7 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
     syncTrigger: {
-        type: PropType<("resize" | "scroll")[]>;
+        type: PropType<Array<"scroll" | "resize">>;
         default: string[];
     };
     to: PropType<string | HTMLElement>;
@@ -64,8 +64,8 @@ declare const _default: import("vue").DefineComponent<{
     internalShift: BooleanConstructor;
     x: NumberConstructor;
     y: NumberConstructor;
-    width: PropType<string>;
-    minWidth: PropType<string>;
+    width: PropType<"target" | string>;
+    minWidth: PropType<"target" | string>;
     containerClass: StringConstructor;
     teleportDisabled: BooleanConstructor;
     zindexable: {

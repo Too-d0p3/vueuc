@@ -351,8 +351,13 @@ export default defineComponent({
                         }
                     }
                     e.preventDefault();
-                    listEl.scrollTop += e.deltaY / ensureWheelScale();
-                    listEl.scrollLeft += e.deltaX / ensureWheelScale();
+                    if (e.shiftKey) {
+                        listEl.scrollLeft += e.deltaY / ensureWheelScale();
+                    }
+                    else {
+                        listEl.scrollTop += e.deltaY / ensureWheelScale();
+                        listEl.scrollLeft += e.deltaX / ensureWheelScale();
+                    }
                     syncViewport();
                     wheelCatched = true;
                     beforeNextFrameOnce(() => {

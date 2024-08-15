@@ -54,9 +54,9 @@ const oppositeAlignCssPositionProps = {
     'left-end': 'top'
 };
 const keepOffsetDirection = {
-    top: true,
-    bottom: false,
-    left: true,
+    top: true, // top++
+    bottom: false, // top--
+    left: true, // left++
     right: false // left--
 };
 const cssPositionToOppositeAlign = {

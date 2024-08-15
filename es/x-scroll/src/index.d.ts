@@ -4,10 +4,7 @@ declare const _default: import("vue").DefineComponent<{
     disabled: BooleanConstructor;
     onScroll: PropType<(e: Event) => void>;
 }, {
-    scrollTo: {
-        (options?: ScrollToOptions | undefined): void;
-        (x: number, y: number): void;
-    };
+    scrollTo: HTMLElement["scrollTo"];
     selfRef: import("vue").Ref<HTMLElement | null>;
     handleWheel: (e: WheelEvent) => void;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{

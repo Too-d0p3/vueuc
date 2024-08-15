@@ -1,5 +1,5 @@
 import { PropType, CSSProperties } from 'vue';
-import { VScrollToOptions, VVirtualListColumn, VVirtualListRenderCell } from './type';
+import { ItemData, VScrollToOptions, VVirtualListColumn, VVirtualListRenderCell } from './type';
 export interface CommonScrollToOptions {
     behavior?: ScrollBehavior;
     debounce?: boolean;
@@ -37,7 +37,7 @@ declare const _default: import("vue").DefineComponent<{
     };
     renderCell: PropType<VVirtualListRenderCell>;
     items: {
-        type: PropType<any[]>;
+        type: PropType<ItemData[]>;
         default: () => never[];
     };
     itemSize: {
@@ -109,7 +109,7 @@ declare const _default: import("vue").DefineComponent<{
     };
     renderCell: PropType<VVirtualListRenderCell>;
     items: {
-        type: PropType<any[]>;
+        type: PropType<ItemData[]>;
         default: () => never[];
     };
     itemSize: {

@@ -1,7 +1,8 @@
 import { PropType } from 'vue';
+import { ItemData } from './type';
 export declare const VirtualListRow: import("vue").DefineComponent<{
     item: {
-        type: PropType<any>;
+        type: PropType<ItemData>;
         required: true;
     };
 }, {
@@ -12,7 +13,7 @@ export declare const VirtualListRow: import("vue").DefineComponent<{
     getLeft: (index: number) => number;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
     item: {
-        type: PropType<any>;
+        type: PropType<ItemData>;
         required: true;
     };
 }>>, {}, {}>;
