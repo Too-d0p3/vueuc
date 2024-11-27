@@ -26,7 +26,7 @@ export interface VirtualListInst {
     itemsElRef: HTMLElement | null;
     scrollTo: ScrollTo;
 }
-declare const _default: import("vue").DefineComponent<{
+declare const _default: import("vue").DefineComponent<import("vue").ExtractPropTypes<{
     showScrollbar: {
         type: BooleanConstructor;
         default: boolean;
@@ -73,8 +73,8 @@ declare const _default: import("vue").DefineComponent<{
         type: (StringConstructor | NumberConstructor)[];
         default: number;
     };
-}, {
-    listHeight: import("vue").Ref<number | undefined>;
+}>, {
+    listHeight: import("vue").Ref<number | undefined, number | undefined>;
     listStyle: {
         overflow: string;
     };
@@ -91,14 +91,14 @@ declare const _default: import("vue").DefineComponent<{
         transform: string;
     }>;
     viewportItems: import("vue").ComputedRef<any[]>;
-    listElRef: import("vue").Ref<HTMLElement | null>;
-    itemsElRef: import("vue").Ref<Element | null>;
+    listElRef: import("vue").Ref<HTMLElement | null, HTMLElement | null>;
+    itemsElRef: import("vue").Ref<Element | null, Element | null>;
     scrollTo: ScrollTo;
     handleListResize: (entry: ResizeObserverEntry) => void;
     handleListScroll: (e: UIEvent) => void;
     handleListWheel: (e: WheelEvent) => void;
     handleItemResize: (key: string | number, entry: ResizeObserverEntry) => void;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
+}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
     showScrollbar: {
         type: BooleanConstructor;
         default: boolean;
@@ -145,16 +145,16 @@ declare const _default: import("vue").DefineComponent<{
         type: (StringConstructor | NumberConstructor)[];
         default: number;
     };
-}>>, {
+}>> & Readonly<{}>, {
     columns: VVirtualListColumn[];
+    itemResizable: boolean;
+    ignoreItemResize: boolean;
     showScrollbar: boolean;
     items: any[];
-    itemResizable: boolean;
     visibleItemsTag: string | object;
-    ignoreItemResize: boolean;
     keyField: string;
     itemAsKey: boolean;
     paddingTop: string | number;
     paddingBottom: string | number;
-}, {}>;
+}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 export default _default;

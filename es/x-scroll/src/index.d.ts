@@ -1,16 +1,16 @@
 import { PropType } from 'vue';
 export type { VXScrollInst } from './interface';
-declare const _default: import("vue").DefineComponent<{
+declare const _default: import("vue").DefineComponent<import("vue").ExtractPropTypes<{
     disabled: BooleanConstructor;
     onScroll: PropType<(e: Event) => void>;
-}, {
+}>, {
     scrollTo: HTMLElement["scrollTo"];
-    selfRef: import("vue").Ref<HTMLElement | null>;
+    selfRef: import("vue").Ref<HTMLElement | null, HTMLElement | null>;
     handleWheel: (e: WheelEvent) => void;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
+}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
     disabled: BooleanConstructor;
     onScroll: PropType<(e: Event) => void>;
-}>>, {
+}>> & Readonly<{}>, {
     disabled: boolean;
-}, {}>;
+}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 export default _default;

@@ -1,5 +1,5 @@
 import { PropType } from 'vue';
-declare const _default: import("vue").DefineComponent<{
+declare const _default: import("vue").DefineComponent<import("vue").ExtractPropTypes<{
     to: {
         type: PropType<string | HTMLElement>;
         default: undefined;
@@ -9,10 +9,10 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         required: true;
     };
-}, {
-    showTeleport: Readonly<import("vue").Ref<boolean>>;
+}>, {
+    showTeleport: Readonly<import("vue").Ref<boolean, boolean>>;
     mergedTo: import("vue").ComputedRef<string | HTMLElement>;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
+}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
     to: {
         type: PropType<string | HTMLElement>;
         default: undefined;
@@ -22,8 +22,8 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         required: true;
     };
-}>>, {
-    to: string | HTMLElement;
+}>> & Readonly<{}>, {
     disabled: boolean;
-}, {}>;
+    to: string | HTMLElement;
+}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 export default _default;
