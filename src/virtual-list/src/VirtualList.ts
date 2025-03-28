@@ -434,9 +434,9 @@ export default defineComponent({
       // List is HTMLElement
       if (isHideByVShow(entry.target as HTMLElement)) return
       // If height is same, return
+      setListWidth(entry.contentRect.width)
       if (entry.contentRect.height === listHeightRef.value) return
       listHeightRef.value = entry.contentRect.height
-      setListWidth(entry.contentRect.width)
       const { onResize } = props
       if (onResize !== undefined) onResize(entry)
     }
